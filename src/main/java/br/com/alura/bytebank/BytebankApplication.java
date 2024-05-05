@@ -5,8 +5,10 @@ import br.com.alura.bytebank.domain.cliente.DadosCadastroCliente;
 import br.com.alura.bytebank.domain.conta.ContaService;
 import br.com.alura.bytebank.domain.conta.DadosAberturaConta;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.util.Scanner;
 
+@ApplicationScoped
 public class BytebankApplication {
 
     private static ContaService service = new ContaService();

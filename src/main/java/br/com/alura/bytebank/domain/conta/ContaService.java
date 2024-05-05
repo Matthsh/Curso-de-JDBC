@@ -7,11 +7,12 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.Set;
 
+
 public class ContaService {
 
-    private ConnectionFactory connection;
+    private final ConnectionFactory connection;
 
-    public ContaService() {
+    public ContaService(){
         this.connection = new ConnectionFactory();
     }
 
@@ -27,7 +28,7 @@ public class ContaService {
 
     public void abrir(DadosAberturaConta dadosDaConta) {
         Connection conn = connection.recuperarConexao();
-        new ContaDAO(conn).salvar(dadosDaConta);
+        new ContaDAO(conn).abrirDAO(dadosDaConta);
     }
 
     public void realizarSaque(Integer numeroDaConta, BigDecimal valor) {
