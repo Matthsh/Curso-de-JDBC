@@ -1,28 +1,20 @@
 package br.com.alura.bytebank;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionFactory {
-
-    public Connection recuperarConexao() {
+public class ConexaoDB {
+    public static void main(String... x) {
         try {
-            return createDataSource().getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            Connection connection = DriverManager
+                    .getConnection("jdbc:mysql://localhost:3306/byte_bank?user=matthsh&password=1503"); // 3306 é a porta padrão do mysql
+            System.out.println("Recuperei a conexão");
+
+            connection.close();
+
+        } catch(SQLException e) {
+            System.out.println(e.getMessage());
         }
-    }
-
-    private HikariDataSource createDataSource() {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/byte_bank");
-        config.setUsername("root");
-        config.setPassword("root");
-        config.setMaximumPoolSize(10);
-
-        return new HikariDataSource(config);
     }
 }
